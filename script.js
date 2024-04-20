@@ -4,6 +4,10 @@ let diccionario = ['APPLE', 'WATCH', 'HOUSE', 'TEACH', 'DRIVE', 'BEACH', 'BAKER'
 
 const palabra = diccionario[Math.floor(Math.random() * diccionario.length)];
 
+const button = document.getElementById("guess-button");
+const nuevoJuego = document.getElementById("reTry-button");
+const entrada = document.getElementById("guess-input");
+
 window.addEventListener('load', init)
 
 function init() {
@@ -12,9 +16,18 @@ function init() {
     console.log("palabra secreta: " + palabra);
 }
 
-const button = document.getElementById("guess-button");
 
 button.addEventListener("click", intentar);
+
+entrada.addEventListener("keypress", function(event){
+    if(event.key === "Enter"){
+        button.click();
+    }
+});
+   
+nuevoJuego.addEventListener("click", function () {
+    location.reload();
+});
 
 function intentar() {
     const INTENTO = leerIntento();
